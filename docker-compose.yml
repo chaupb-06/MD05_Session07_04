@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  runner:
+    image: ghcr.io/actions/actions-runner:latest
+    container_name: github-self-hosted-runner
+    restart: always
+    environment:
+      - REPO_URL=https://github.com/quan41144/Homework_MD05_Session07_04.git
+      - ACCESS_TOKEN=${GITHUB_PAT_TOKEN}
+      - RUNNER_NAME=quickbite-runner-01
+      - RUNNER_LABELS=quickbite,restaurant-service,self-hosted
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner_work:/home/runner/_work
+volumes:
+  runner_work:
